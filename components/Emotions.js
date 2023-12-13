@@ -7,9 +7,9 @@ export default function Emotions({onSelectEmotionsMeter}){
     const [emotion2, setEmotion2] = useState(false);
     const [emotion3, setEmotion3] = useState(false);
 
-    const [emotion1Text, setEmotion1Text] = useState("Light");
-    const [emotion2Text, setEmotion2Text] = useState("Intermediate");
-    const [emotion3Text, setEmotion3Text] = useState("Strong")
+    const [emotion1Text, setEmotion1Text] = useState("Mild");
+    const [emotion2Text, setEmotion2Text] = useState("Moderate");
+    const [emotion3Text, setEmotion3Text] = useState("Severe")
 
     const changeEmotion1Style = () => {
         setEmotion1(true);
