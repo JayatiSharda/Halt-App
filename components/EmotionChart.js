@@ -20,15 +20,15 @@ const EmotionChart = ({ data, emotion }) => {
             labels: data?.map((item) => item?.monthName),
             datasets: [
             {
-                data: data?.map((item) => item?.Light),
+                data: data?.map((item) => item?.Mild),
                 color: () => 'green',
             },
             {
-                data: data?.map((item) => item?.Intermediate),
+                data: data?.map((item) => item?.Moderate),
                 color: () => 'red',
             },
             {
-                data: data?.map((item) => item?.Strong),
+                data: data?.map((item) => item?.Severe),
                 color: () => 'orange',
             },
             {
