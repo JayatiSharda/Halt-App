@@ -30,7 +30,7 @@ export default function EmotionsMeterEnd({route, navigation}){
         const month = date.getMonth() + 1;
         const monthName = date.toLocaleString('en-US', {month: 'short'});
         const dataSnap = await getDoc(doc(db, "halt", user?.uid))
-        if(dataSnap.exists()){
+if(dataSnap.exists()){
             data = dataSnap?.data()
             if(data["emotions"]===null || data["emotions"]===undefined){
                 const emotions = {}
@@ -40,8 +40,9 @@ export default function EmotionsMeterEnd({route, navigation}){
                 data["emotions"][emotion] = [{
                     "month": month,
                     "monthName": monthName,
-                    "Strong": 0,
-                    "Intermediate": 0,
+                    "Mild": 0,
+                    "Moderate": 0,
+                    "Severe": 0,
                     "Light": 0,
                     "Good": 0,
                     "Relaxed": 0,
@@ -56,16 +57,45 @@ export default function EmotionsMeterEnd({route, navigation}){
                     }
                 })
                 if(monthNotFound){
-                    data["emotions"][emotion]?.push({
-                        "month": month,
-                        "monthName": monthName,
-                        "Strong": 1,
-                        "Intermediate": 1,
-                        "Light": 1
-                    })
+                    if(emotionMeter==="Good"){
+                        data["emotions"][emotion]?.push({
+                            "month": month,
+                            "monthName": monthName,
+                            "Mild": 0,
+                            "Moderate": 0,
+                            "Severe": 0,
+                            "Good": 1,
+                            "Relaxed": 0,
+                            "Happy": 0,
+                        })
+                    }
+                    else if(emotionMeter==="Happy"){
+                        data["emotions"][emotion]?.push({
+                            "month": month,
+                            "monthName": monthName,
+                            "Mild": 0,
+                            "Moderate":0,
+                            "Severe": 0,
+                            "Good": 0,
+                            "Relaxed": 0,
+                            "Happy": 1,
+                        })
+                    }
+                    else if(emotionMeter==="Relaxed"){
+                        data["emotions"][emotion]?.push({
+                            "month": month,
+                            "monthName": monthName,
+                            "Mild": 0,
+                            "Moderate": 0,
+                            "Severe": 0,
+                            "Good": 0,
+                            "Relaxed": 1,
+                            "Happy": 0,
+                        })
+                    }
                 }
-            const dataRef = await updateDoc(doc(db, "halt", user?.uid), data)
-        }
+            const dataRef = await updateDoc(doc(db, "halt", user?.uid), data)
+        }
         
         
     }
